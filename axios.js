@@ -7,5 +7,6 @@ axios({
     responseType: "json"
 })
     .then(res => {
+        console.log(res.data)
         fs.writeFileSync('google.html', res.data)
     })
