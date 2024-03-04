@@ -1,12 +1,7 @@
-import chalk from "chalk"
+import fs from "node:fs"
 
-const values = {
-    blue: 'Sofiane',
-    red: 'Quentin',
-    green: 'Yacine',
-    yellow: 'Elisa'
-}
-
-Object.entries(values).map(([key, value]) => {
-    console.log(chalk[key](value))
+fs.writeFileSync("test.txt", "Ceci est juste un test", err =>{
+    if(err) console.error(err)
 })
+
+console.log(fs.readFileSync("test.txt", {encoding: 'utf8'}))
