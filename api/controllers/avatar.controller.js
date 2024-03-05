@@ -22,20 +22,20 @@ const avatars = [
 ]
 
 export const getAvatars = ((req, res) => res.json(avatars))
+export const viewAvatars = ((req, res) => res.render('pages/index', {avatars}))
+export const viewNewAvatar = ((req, res) => res.render('pages/addAvatar'))
 export const getOneAvatar = ((req, res) => res.json(avatars.find(av => av.id === parseInt(req.params.id))))
 export const addAvatar = ((req, res) => {
     const { name, description } = req.body
-    let avatar
-    if(!name || !description) avatar = `Un nom et une description sont requis`
+    if(!name || !description) res.json(`Un nom et une description sont requis`)
     else {
-        avatar = {
+        avatars.push({
             id: (avatars[avatars.length - 1]?.id || 0) + 1,
             name,
             description
-        }
-        avatars.push(avatar)
+        })
     }
-    res.json(avatar)
+    res.render('pages/index', {avatars})
 })
 export const deleteAvatar = ((req, res) => {
     const { id } = req.params

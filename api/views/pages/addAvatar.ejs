@@ -1,0 +1,20 @@
+<%- include('../partials/body-start'); %>
+
+<main>
+    <div class="jumbotron">
+        <h2>New Avatar</h2>
+        <form action="/avatars" method="POST">
+            <label>
+                Name
+                <input type="text" placeholder="Name of avatar" name="name">
+            </label>
+            <label>
+                Description
+                <input type="text" placeholder="Description of avatar" name="description">
+            </label>
+            <button type="submit">Add a movie</button>
+        </form>
+    </div>
+</main>
+
+<%- include('../partials/body-end'); %>

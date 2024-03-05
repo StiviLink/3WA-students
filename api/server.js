@@ -8,11 +8,13 @@ const app = express()
 app.use(bodyParser.json())
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
+// set the view engine to ejs
+app.set('view engine', 'ejs')
+app.set('views', 'api/views')
 
 const host = 'localhost'
 const port = 8000
 
-app.get('/', (req, res) => res.send('Bienvenue'))
 avatarRoute(app)
 
 app.listen(port, () => console.log(`Server is running on http://${host}:${port}`))

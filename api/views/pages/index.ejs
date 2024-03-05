@@ -1,0 +1,12 @@
+<%- include('../partials/body-start'); %>
+
+<main>
+    <div class="jumbotron">
+        <h2>Avatars List : </h2>
+        <% avatars?.forEach(avatar => { %>
+            <li> <%= avatar.name %> : <%= avatar.description %> </li>
+        <% }) %>
+    </div>
+</main>
+
+<%- include('../partials/body-end'); %>
