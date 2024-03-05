@@ -24,6 +24,11 @@ const avatars = [
 export const getAvatars = ((req, res) => res.json(avatars))
 export const viewAvatars = ((req, res) => res.render('pages/index', {avatars}))
 export const viewNewAvatar = ((req, res) => res.render('pages/addAvatar'))
+export const viewUpdateAvatar = ((req, res) => {
+    const { id } = req.params
+    const avatar = avatars.find(avatar => avatar.id === parseInt(id))
+    res.render('pages/updateAvatar', {avatar})
+})
 export const getOneAvatar = ((req, res) => res.json(avatars.find(av => av.id === parseInt(req.params.id))))
 export const addAvatar = ((req, res) => {
     const { name, description } = req.body
@@ -34,27 +39,24 @@ export const addAvatar = ((req, res) => {
             name,
             description
         })
+        res.render('pages/index', {avatars})
     }
-    res.render('pages/index', {avatars})
 })
 export const deleteAvatar = ((req, res) => {
     const { id } = req.params
-    let result = `Avatar supprimé avec succès`
     const avatarFound = avatars.find(avatar => avatar.id === parseInt(id))
     if(avatarFound) avatars.splice(avatars.indexOf(avatarFound), 1)
-    else result = `Avatar inexistant`
-    res.json(result)
+    else res.json(`Avatar inexistant`)
+    res.render('pages/index', {avatars})
 })
 export const updateAvatar = ((req, res) => {
     const { id } = req.params
     const { name, description } = req.body
     const avatarFound = avatars.find(avatar => avatar.id === parseInt(id))
-    let avatar
-    if(!avatarFound) avatar = `Avatar inexistant`
+    if(!avatarFound) res.json(`Avatar inexistant`)
     else {
         if(name) avatarFound.name = name
-        if(description) avatarFound.description = name
-        avatar = avatarFound
+        if(description) avatarFound.description = description
+        res.render('pages/index', {avatars})
     }
-    res.json(avatar)
 })

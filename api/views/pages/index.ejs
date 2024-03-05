@@ -4,7 +4,7 @@
     <div class="jumbotron">
         <h2>Avatars List : </h2>
         <% avatars?.forEach(avatar => { %>
-            <li> <%= avatar.name %> : <%= avatar.description %> </li>
+            <li> <a href="/avatar/update/<%= avatar.id %>"><%= avatar.name %></a> : <%= avatar.description %> </li>
         <% }) %>
     </div>
 </main>

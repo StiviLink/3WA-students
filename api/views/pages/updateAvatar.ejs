@@ -1,0 +1,27 @@
+<%- include('../partials/body-start'); %>
+
+<main>
+    <div class="jumbotron">
+        <h2>New Avatar</h2>
+        <form action="/update/<%= avatar?.id %>" method="POST">
+            <p>
+                <label>
+                    Name :
+                    <input type="text" placeholder="Name of avatar" name="name" value="<%= avatar?.name %>">
+                </label>
+            </p>
+            <p>
+                <label>
+                    Description :
+                    <input type="text" placeholder="Description of avatar" name="description" value="<%= avatar?.description %>">
+                </label>
+            </p>
+            <input type="submit" value="Update" />
+        </form>
+        <form action="/avatar/remove/<%= avatar?.id %>" method="get">
+            <input type="submit" value="Delete" />
+        </form>
+    </div>
+</main>
+
+<%- include('../partials/body-end'); %>
